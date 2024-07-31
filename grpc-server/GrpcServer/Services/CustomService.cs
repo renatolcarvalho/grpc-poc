@@ -1,9 +1,8 @@
 ﻿using Grpc.Core;
-using GrpcServer.Bases;
 
 namespace GrpcServer.Services
 {
-    public class CustomService : CustomBase
+    public class CustomService : Custom.CustomBase
     {
         private readonly ILogger<CustomService> _logger;
         public CustomService(ILogger<CustomService> logger)
@@ -11,7 +10,7 @@ namespace GrpcServer.Services
             _logger = logger;
         }
 
-        public Task<SayYourNameReply> SayYourName(SayYourNameRequest request, ServerCallContext context)
+        public override Task<SayYourNameReply> SayYourName(SayYourNameRequest request, ServerCallContext context)
         {
             return Task.FromResult(new SayYourNameReply
             {
